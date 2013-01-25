@@ -12,7 +12,9 @@ def get_api_key():
 	Retrieve API_KEY from another file
 	'''
 	f = open("API_KEY.txt")
-	return f.read()
+	API_KEY = f.read()
+	f.close()
+	return API_KEY
 	
 
 def make_url():
@@ -25,7 +27,7 @@ def make_url():
 	url_format = '&format=json'
 	subject_id = '&id=' + get_subject()
 	
-	url = url_base + API_KEY + num_results_url + url_format + subject_id
+	url = url_base + get_api_key() + num_results_url + url_format + subject_id
 	
 	return url
 	
