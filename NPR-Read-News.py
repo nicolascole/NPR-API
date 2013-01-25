@@ -8,10 +8,18 @@ subject_ids = {'technology':1019, 'business':1006, 'economy':1017,
                 'science':1007}
 
 def get_api_key():
-	'''Retrieve API_KEY from another file'''
+	'''(NoneType) -> str
+	Retrieve API_KEY from another file
+	'''
+	f = open("API_KEY.txt")
+	return f.read()
 	
 
 def make_url():
+	'''(NoneType) -> str
+	Creates URL that will fetch news stories based 
+	on user inputed data
+	'''
 	url_base = 'http://api.npr.org/query?apiKey='
 	num_results_url = '&numResults=' + get_num_results()
 	url_format = '&format=json'
@@ -23,7 +31,9 @@ def make_url():
 	
 
 def get_num_results():
-	'''(NoneType) -> str '''
+	'''(NoneType) -> str 
+	Return number of results user wants to read
+	'''
 	
 	num_results = raw_input("How many results would you like?\n")
 	try:
@@ -35,7 +45,9 @@ def get_num_results():
 	return str(num_results)
 
 def get_subject():
-	'''(NoneType) -> str '''
+	'''(NoneType) -> str 
+	Return which subject the user wants to read about
+	'''
 	
 	print "Please choose a subject:"
 	for k,v in subject_ids.items():
@@ -51,6 +63,9 @@ def get_subject():
 	                    
 		
 def print_results(url):
+	'''(str) -> str
+	Prints out the news stories
+	'''
 
 	#open our url, load the JSON
 	response = urlopen(url)
